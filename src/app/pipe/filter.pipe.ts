@@ -11,17 +11,17 @@ export class FilterPipe implements PipeTransform {
    * @param key {string} - az objektumkulcs, amely alapján szűr
    * @returns {any[]} - a kifejezés alapján szűrt tömb
    */
+
   transform(value: any[], phrase: string, key: string = ''): any {
-    // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
 
     /**
      * FELADAT!
      * Ellenőrzés: ha a value nem tömb, vagy nincs megadva a phrase vagy a key,
      * térj vissza a value változóval.
      */
-
-
+    if (!(Array.isArray(value)) || phrase === '' || key === '') {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -31,7 +31,7 @@ export class FilterPipe implements PipeTransform {
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
 
-
+    return value.filter(item => ('' + item[key]).toLowerCase().includes(phrase.toLowerCase()))
   }
 
 }

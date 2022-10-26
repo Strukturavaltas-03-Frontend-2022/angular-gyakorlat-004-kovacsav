@@ -12,8 +12,7 @@ export class SorterPipe implements PipeTransform {
    * @returns {any[]} - a kulcs alapján rendezett tömb
    */
   transform(value: any[], key: string): any[] {
-    // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
+    // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!
 
     /**
      * FELADAT!
@@ -21,7 +20,9 @@ export class SorterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-
+    if (!(Array.isArray(value)) || key === '') {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -33,7 +34,10 @@ export class SorterPipe implements PipeTransform {
      *  összehasonlításának az eredményével.
      */
 
-
+    return value.sort((a, b) =>
+      (typeof a[key] === 'number' && typeof b[key] === 'number') ?
+        (a[key] - b[key]) :
+        (('' + a[key]).toLowerCase()).localeCompare(('' + b[key]).toLowerCase()));
   }
 
 }
